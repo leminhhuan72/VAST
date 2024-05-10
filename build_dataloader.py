@@ -4,7 +4,9 @@ from torch.utils.data import DataLoader
 from data.loader import  MetaLoader, PrefetchLoader
 from data import data_registry
 from utils.distributed import DistributedSampler_wopadding
-from .logger import LOGGER
+from utils.logger import LOGGER
+from utils.args import get_args,logging_cfgs
+from utils.initialize import initialize
 
 
     
@@ -124,3 +126,17 @@ def build_dataloader(dataset, collate_fn, is_train, batch_size, n_workers=None, 
 
     return loader
 
+
+
+if __name__ == "__main__":
+    args = get_args()
+    initialize(args)
+
+    ### logging cfgs
+    logging_cfgs(args)   
+
+
+    if args.run_cfg.mode == 'training':
+
+        ### create datasets and dataloader
+        train_loader = create_train_dataloaders(args)
