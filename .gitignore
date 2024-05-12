@@ -5,7 +5,7 @@ aic_caption/
 cococaption/pycocoevalcap/spice
 output/
 ouptut/
-datasets/
+#datasets/
 lpips/
 upload/
 __pycache__
